@@ -1,9 +1,11 @@
 const tableContent: HTMLElement | null = document.getElementById('content');
 let path: string = "students"
+let titleContent: any = document.querySelector('.table-title');
 
 async function init(): Promise<void> {
     await getAll();
-    console.log(element)
+    verifyTitle();
+    console.log(titleContent)
 }
 
 async function getAll(): Promise<void> {
@@ -92,16 +94,22 @@ function generateTable(data: string[]): void {
     tableContent?.appendChild(table);
 };
 
+function verifyTitle (): void{
+    if (path === 'students') {
+        titleContent.innerHTML =  "Students";
+    }
+    if (path === 'courses') {
+        titleContent.innerHTML = "Courses"
+    }
+}
+
 let element = document.getElementById("btn")
 element?.addEventListener("click", changePath);
 
-let title = document.querySelector(".table-title");
 
 function changePath(): void {
     path === 'students' ? path = 'courses' : path = 'students';
-
-    let titleContent = title?.textContent?.toString();
-    console.log(titleContent)
+    verifyTitle();
 
     if (tableContent !== null) {
         tableContent.innerHTML = '';

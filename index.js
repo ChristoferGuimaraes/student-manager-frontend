@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var tableContent = document.getElementById('content');
 var path = "students";
+var titleContent = document.querySelector('.table-title');
 function init() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -43,7 +44,8 @@ function init() {
                 case 0: return [4 /*yield*/, getAll()];
                 case 1:
                     _a.sent();
-                    console.log(element);
+                    verifyTitle();
+                    console.log(titleContent);
                     return [2 /*return*/];
             }
         });
@@ -127,14 +129,19 @@ function generateTable(data) {
     tableContent === null || tableContent === void 0 ? void 0 : tableContent.appendChild(table);
 }
 ;
+function verifyTitle() {
+    if (path === 'students') {
+        titleContent.innerHTML = "Students";
+    }
+    if (path === 'courses') {
+        titleContent.innerHTML = "Courses";
+    }
+}
 var element = document.getElementById("btn");
 element === null || element === void 0 ? void 0 : element.addEventListener("click", changePath);
-var title = document.querySelector(".table-title");
 function changePath() {
-    var _a;
     path === 'students' ? path = 'courses' : path = 'students';
-    var titleContent = (_a = title === null || title === void 0 ? void 0 : title.textContent) === null || _a === void 0 ? void 0 : _a.toString();
-    console.log(titleContent);
+    verifyTitle();
     if (tableContent !== null) {
         tableContent.innerHTML = '';
     }
