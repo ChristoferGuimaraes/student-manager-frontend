@@ -9,9 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const tableContent = document.getElementById('content');
-let element = document.getElementById("btn");
-let titleContent = document.querySelector('.table-title');
-console.log("teste");
 class Table {
     constructor(path) {
         this.path = path;
@@ -91,5 +88,19 @@ class Table {
     }
     ;
 }
-let myTable = new Table("courses");
+let myTable = new Table("students");
 myTable.onInit();
+let tableStudent = document.querySelector("#table-student");
+tableStudent === null || tableStudent === void 0 ? void 0 : tableStudent.addEventListener('click', selectTableStudent);
+let tableCourse = document.querySelector("#table-course");
+tableCourse === null || tableCourse === void 0 ? void 0 : tableCourse.addEventListener('click', selectTableCourse);
+function selectTableStudent() {
+    tableContent.innerHTML = "";
+    let studentTable = new Table("students");
+    studentTable.onInit();
+}
+function selectTableCourse() {
+    tableContent.innerHTML = "";
+    let courseTable = new Table("courses");
+    courseTable.onInit();
+}

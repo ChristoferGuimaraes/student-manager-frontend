@@ -11,3 +11,20 @@ h1 {
     display: flex;
     justify-content: center;
 }
+a {
+    cursor: pointer;
+}
+
+.body-main {
+    max-width: 80rem;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+.nav-header-table {
+    display: flex;
+    justify-content: space-between;
+
+}

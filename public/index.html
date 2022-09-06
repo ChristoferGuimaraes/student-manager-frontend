@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Manager</title>
+    <script type="module" src="../public/js/index.js" defer></script>
+    <link rel="stylesheet" href="../public/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Manager</title>
-  <script type="module" src="../public/js/index.js" defer></script>
-  <link rel="stylesheet" href="../public/styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-</head>
-
-<body class="d-flex">
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Disabled</a>
-    </li>
-  </ul>
-  <main class="w-100">
-    <button id="btn">Change</button>
-    <h1 class="table-title"></h1>
-    <div id="content" class="table table-container"></div>
-  </main>
-
-</body>
-
+  <body class="d-flex">
+    <aside class="bd-sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" id="table-student">Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="table-course">Courses</a>
+        </li>
+      </ul>
+    </aside>
+    <main class="main-container w-100">
+      <div class="body-main">
+      <div class="nav-header-table">
+        <span class="table-title">Students</span>
+        <nav>
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div id="content" class="table table-container"></div>
+      </div>
+    </main>
+  </body>
 </html>

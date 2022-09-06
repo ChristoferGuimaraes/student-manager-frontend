@@ -1,7 +1,4 @@
-const tableContent: HTMLElement | null = document.getElementById('content');
-let element = document.getElementById("btn")
-let titleContent: any = document.querySelector('.table-title');
-console.log("teste");
+const tableContent: any = document.getElementById('content');
 class Table {
     path: string;
 
@@ -101,10 +98,24 @@ class Table {
 
 }
 
-let myTable = new Table("courses");
+let myTable = new Table("students");
 myTable.onInit();
 
+let tableStudent = document.querySelector("#table-student");
+tableStudent?.addEventListener('click', selectTableStudent);
 
+let tableCourse = document.querySelector("#table-course");
+tableCourse?.addEventListener('click', selectTableCourse);
 
+function selectTableStudent(): void{
+    tableContent.innerHTML = "";
+    let studentTable = new Table("students");
+    studentTable.onInit();
+}
 
+function selectTableCourse(): void{
+    tableContent.innerHTML = "";
+    let courseTable = new Table("courses");
+    courseTable.onInit();
+}
 
