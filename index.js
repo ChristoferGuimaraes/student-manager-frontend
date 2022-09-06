@@ -35,116 +35,123 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var tableContent = document.getElementById('content');
-var path = "students";
-var titleContent = document.querySelector('.table-title');
-function init() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getAll()];
-                case 1:
-                    _a.sent();
-                    verifyTitle();
-                    console.log(titleContent);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function getAll() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("http://localhost:9090/api/".concat(path))
-                        .then(function (res) { return res.json(); })
-                        .then(function (data) {
-                        generateTable(data.content);
-                    })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function generateElement(tag, text) {
-    var elementTag = document.createElement(tag);
-    if (text) {
-        elementTag.innerText = text;
-        //Students
-        if (text == 'id') {
-            elementTag.innerText = "ID";
-        }
-        if (text == 'firstName') {
-            elementTag.innerText = "First Name";
-        }
-        if (text == 'lastName') {
-            elementTag.innerText = "Last Name";
-        }
-        if (text == 'age') {
-            elementTag.innerText = "Age";
-        }
-        if (text == 'email') {
-            elementTag.innerText = "Email";
-        }
-        //Courses
-        if (text == 'name') {
-            elementTag.innerText = "Name";
-        }
-        if (text == 'teacherName') {
-            elementTag.innerText = "Teacher Name";
-        }
-        if (text == 'classNumber') {
-            elementTag.innerText = "Class Number";
-        }
-        if (text == 'startDate') {
-            elementTag.innerText = "Start Date";
-        }
-    }
-    return elementTag;
-}
-;
-function appendElement(parent, child) {
-    parent.appendChild(child);
-    return parent;
-}
-;
-function generateTable(data) {
-    if (data.length === 0) {
-        return;
-    }
-    var objectKeysParameters = Object.keys(data[0]);
-    var table = generateElement('table');
-    //header
-    appendElement(table, objectKeysParameters.slice(0, 5)
-        .map(function (objParam) { return generateElement('th', objParam); })
-        .reduce(appendElement, generateElement('tr')));
-    //values
-    var makeRow = function (acc, row) {
-        return appendElement(acc, objectKeysParameters.slice(0, 5)
-            .map(function (objParam) { return generateElement('td', row[objParam]); })
-            .reduce(appendElement, generateElement('tr')));
-    };
-    data.reduce(makeRow, table);
-    tableContent === null || tableContent === void 0 ? void 0 : tableContent.appendChild(table);
-}
-;
-function verifyTitle() {
-    if (path === 'students') {
-        titleContent.innerHTML = "Students";
-    }
-    if (path === 'courses') {
-        titleContent.innerHTML = "Courses";
-    }
-}
 var element = document.getElementById("btn");
-element === null || element === void 0 ? void 0 : element.addEventListener("click", changePath);
-function changePath() {
-    path === 'students' ? path = 'courses' : path = 'students';
-    verifyTitle();
-    if (tableContent !== null) {
-        tableContent.innerHTML = '';
+var titleContent = document.querySelector('.table-title');
+var Table = /** @class */ (function () {
+    function Table(path) {
+        this.path = path;
     }
-    getAll();
-}
-init();
+    Table.prototype.onInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAll()];
+                    case 1:
+                        _a.sent();
+                        this.verifyTitle();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Table.prototype.getAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, fetch("http://localhost:9090/api/".concat(this.path))
+                            .then(function (res) { return res.json(); })
+                            .then(function (data) {
+                            _this.generateTable(data.content);
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Table.prototype.generateElement = function (tag, text) {
+        var elementTag = document.createElement(tag);
+        if (text) {
+            elementTag.innerText = text;
+            //Students
+            if (text == 'id') {
+                elementTag.innerText = "ID";
+            }
+            if (text == 'firstName') {
+                elementTag.innerText = "First Name";
+            }
+            if (text == 'lastName') {
+                elementTag.innerText = "Last Name";
+            }
+            if (text == 'age') {
+                elementTag.innerText = "Age";
+            }
+            if (text == 'email') {
+                elementTag.innerText = "Email";
+            }
+            //Courses
+            if (text == 'name') {
+                elementTag.innerText = "Name";
+            }
+            if (text == 'teacherName') {
+                elementTag.innerText = "Teacher Name";
+            }
+            if (text == 'classNumber') {
+                elementTag.innerText = "Class Number";
+            }
+            if (text == 'startDate') {
+                elementTag.innerText = "Start Date";
+            }
+        }
+        return elementTag;
+    };
+    ;
+    Table.prototype.appendElement = function (parent, child) {
+        parent.appendChild(child);
+        return parent;
+    };
+    ;
+    Table.prototype.generateTable = function (data) {
+        var _this = this;
+        if (data.length === 0) {
+            return;
+        }
+        var objectKeysParameters = Object.keys(data[0]);
+        var table = this.generateElement('table');
+        //header
+        this.appendElement(table, objectKeysParameters.slice(0, 5)
+            .map(function (objParam) { return _this.generateElement('th', objParam); })
+            .reduce(this.appendElement, this.generateElement('tr')));
+        //values
+        var makeRow = function (acc, row) {
+            return _this.appendElement(acc, objectKeysParameters.slice(0, 5)
+                .map(function (objParam) { return _this.generateElement('td', row[objParam]); })
+                .reduce(_this.appendElement, _this.generateElement('tr')));
+        };
+        data.reduce(makeRow, table);
+        tableContent === null || tableContent === void 0 ? void 0 : tableContent.appendChild(table);
+    };
+    ;
+    Table.prototype.verifyTitle = function () {
+        if (this.path === 'students') {
+            titleContent.innerHTML = "Students";
+        }
+        if (this.path === 'courses') {
+            titleContent.innerHTML = "Courses";
+        }
+    };
+    Table.prototype.changePath = function () {
+        element === null || element === void 0 ? void 0 : element.addEventListener("click", this.changePath);
+        this.path === 'students' ? this.path = 'courses' : this.path = 'students';
+        this.verifyTitle();
+        if (tableContent !== null) {
+            tableContent.innerHTML = '';
+        }
+        this.getAll();
+    };
+    return Table;
+}());
+var myTable = new Table("courses");
+myTable.onInit();
