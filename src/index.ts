@@ -1,7 +1,7 @@
 const tableContent: HTMLElement | null = document.getElementById('content');
 let element = document.getElementById("btn")
 let titleContent: any = document.querySelector('.table-title');
-
+console.log("teste");
 class Table {
     path: string;
 
@@ -11,7 +11,6 @@ class Table {
 
     async onInit(): Promise<void> {
         await this.getAll();
-        this.verifyTitle();
     }
 
     async getAll(): Promise<void> {
@@ -99,28 +98,6 @@ class Table {
         data.reduce(makeRow, table);
         tableContent?.appendChild(table);
     };
-
-    verifyTitle(): void {
-        if (this.path === 'students') {
-            titleContent.innerHTML = "Students";
-        }
-        if (this.path === 'courses') {
-            titleContent.innerHTML = "Courses"
-        }
-    }
-
-
-    changePath(): void {
-        element?.addEventListener("click", this.changePath);
-
-        this.path === 'students' ? this.path = 'courses' : this.path = 'students';
-        this.verifyTitle();
-
-        if (tableContent !== null) {
-            tableContent.innerHTML = '';
-        }
-        this.getAll();
-    }
 
 }
 
