@@ -90,17 +90,23 @@ class Table {
 }
 let myTable = new Table("students");
 myTable.onInit();
-let tableStudent = document.querySelector("#table-student");
+//functions
+let tableStudent = document.querySelector("#table-students");
 tableStudent === null || tableStudent === void 0 ? void 0 : tableStudent.addEventListener('click', selectTableStudent);
-let tableCourse = document.querySelector("#table-course");
+let tableCourse = document.querySelector("#table-courses");
 tableCourse === null || tableCourse === void 0 ? void 0 : tableCourse.addEventListener('click', selectTableCourse);
-function selectTableStudent() {
+let tableName = document.querySelector('.table-title');
+function clearField() {
     tableContent.innerHTML = "";
-    let studentTable = new Table("students");
-    studentTable.onInit();
+    tableName.innerHTML = "";
+}
+function selectTableStudent() {
+    clearField();
+    tableName.innerHTML = "Students";
+    new Table("students").onInit();
 }
 function selectTableCourse() {
-    tableContent.innerHTML = "";
-    let courseTable = new Table("courses");
-    courseTable.onInit();
+    clearField();
+    tableName.innerHTML = "Courses";
+    new Table("courses").onInit();
 }

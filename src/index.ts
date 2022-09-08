@@ -1,4 +1,5 @@
 const tableContent: any = document.getElementById('content');
+
 class Table {
     path: string;
 
@@ -20,6 +21,7 @@ class Table {
 
     generateElement(tag: any, text?: string) {
         let elementTag = document.createElement(tag);
+        
         if (text) {
             elementTag.innerText = text;
 
@@ -101,21 +103,33 @@ class Table {
 let myTable = new Table("students");
 myTable.onInit();
 
-let tableStudent = document.querySelector("#table-student");
+
+//functions
+let tableStudent = document.querySelector("#table-students");
 tableStudent?.addEventListener('click', selectTableStudent);
 
-let tableCourse = document.querySelector("#table-course");
+let tableCourse = document.querySelector("#table-courses");
 tableCourse?.addEventListener('click', selectTableCourse);
 
-function selectTableStudent(): void{
+let tableName: any = document.querySelector('.table-title');
+
+function clearField(): void {
     tableContent.innerHTML = "";
-    let studentTable = new Table("students");
-    studentTable.onInit();
+    tableName.innerHTML = "";
 }
 
-function selectTableCourse(): void{
-    tableContent.innerHTML = "";
-    let courseTable = new Table("courses");
-    courseTable.onInit();
+function selectTableStudent(): void {
+    clearField();
+    tableName.innerHTML = "Students";
+    
+    new Table("students").onInit();
+
 }
 
+function selectTableCourse(): void {
+    clearField();
+    tableName.innerHTML = "Courses";
+
+    new Table("courses").onInit();
+    
+}
