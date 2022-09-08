@@ -110,3 +110,87 @@ function selectTableCourse() {
     tableName.innerHTML = "Courses";
     new Table("courses").onInit();
 }
+class Form {
+    constructor() {
+        this.formElement = document.getElementById("form");
+        this.br = document.createElement("br");
+    }
+    postData() {
+        console.log(JSON.stringify(this.getFieldValues()));
+        let myHeaders = new Headers({
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        });
+        fetch("http://localhost:9090/api/student", {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(this.getFieldValues()),
+        }).then(res => res.json())
+            .then(data => console.log(data));
+    }
+    generateForm() {
+        // Create a form dynamically
+        let form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            this.getFieldValues();
+            this.postData();
+        });
+        // Create an input element for first name 
+        let inputFirstName = document.createElement("input");
+        inputFirstName.setAttribute("type", "text");
+        inputFirstName.setAttribute("name", "first-name");
+        inputFirstName.setAttribute("id", "first-name");
+        inputFirstName.setAttribute("placeholder", "First Name");
+        // Create an input element for last name 
+        let inputLastName = document.createElement("input");
+        inputLastName.setAttribute("type", "text");
+        inputLastName.setAttribute("name", "last-name");
+        inputLastName.setAttribute("id", "last-name");
+        inputLastName.setAttribute("placeholder", "Last Name");
+        // Create an input element for email
+        let inputEmail = document.createElement("input");
+        inputEmail.setAttribute("type", "text");
+        inputEmail.setAttribute("name", "email");
+        inputEmail.setAttribute("id", "email");
+        inputEmail.setAttribute("placeholder", "E-Mail");
+        // Create an input element for date of birth
+        let inputBirthDate = document.createElement("input");
+        inputBirthDate.setAttribute("type", "text");
+        inputBirthDate.setAttribute("name", "birth-date");
+        inputBirthDate.setAttribute("id", "birth-date");
+        inputBirthDate.setAttribute("placeholder", "Birth Date");
+        // create a submit button
+        var submitBtn = document.createElement("input");
+        submitBtn.setAttribute("type", "submit");
+        submitBtn.setAttribute("value", "Submit");
+        // Append the first name input to the form
+        form.appendChild(inputFirstName);
+        form.appendChild(this.br.cloneNode());
+        // Append the last name to the form
+        form.appendChild(inputLastName);
+        form.appendChild(this.br.cloneNode());
+        // Append the Password to the form
+        form.appendChild(inputEmail);
+        form.appendChild(this.br.cloneNode());
+        // Append the birth date to the form
+        form.appendChild(inputBirthDate);
+        form.appendChild(this.br.cloneNode());
+        // Append the submit button to the form
+        form.appendChild(submitBtn);
+        document.getElementsByTagName("body")[0]
+            .appendChild(form);
+    }
+    getFieldValues() {
+        let object = {};
+        object.firstName = document.getElementById("first-name").value;
+        object.lastName = document.getElementById("last-name").value;
+        object.email = document.getElementById("email").value;
+        object.birthDate = document.getElementById("birth-date").value;
+        object.courses = [];
+        return object;
+    }
+}
+let formEl = new Form();
+formEl.generateForm();
