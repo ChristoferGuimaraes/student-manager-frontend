@@ -162,9 +162,16 @@ class Form {
         inputBirthDate.setAttribute("id", "birth-date");
         inputBirthDate.setAttribute("placeholder", "Birth Date");
         // create a submit button
-        var submitBtn = document.createElement("input");
+        let submitBtn = document.createElement("input");
         submitBtn.setAttribute("type", "submit");
         submitBtn.setAttribute("value", "Submit");
+        submitBtn.setAttribute("class", "btn btn-primary");
+        submitBtn.setAttribute("data-bs-dismiss", "modal");
+        let closeBtn = document.createElement("input");
+        closeBtn.setAttribute("type", "button");
+        closeBtn.setAttribute("class", "btn btn-secondary");
+        closeBtn.setAttribute("data-bs-dismiss", "modal");
+        closeBtn.setAttribute("value", "Close");
         // Append the first name input to the form
         form.appendChild(inputFirstName);
         form.appendChild(this.br.cloneNode());
@@ -179,7 +186,8 @@ class Form {
         form.appendChild(this.br.cloneNode());
         // Append the submit button to the form
         form.appendChild(submitBtn);
-        document.getElementsByTagName("body")[0]
+        form.appendChild(closeBtn);
+        document.getElementsByClassName("modal-body")[0]
             .appendChild(form);
     }
     getFieldValues() {
